@@ -1,10 +1,16 @@
 import Link, { type LinkProps } from "next/link";
 import { type ReactNode } from "react";
 
-export function PrimaryLink(props: LinkProps & { children: ReactNode }) {
+interface PrimaryLinkProps {
+  href: string;
+  className?: string; // Allow className to be optional
+  children: React.ReactNode;
+}
+
+export function PrimaryLink({ href, className, children }: PrimaryLinkProps) {
   return (
-    <Link className="hover:text-cyan-500" {...props}>
-      {props.children}
+    <Link href={href} className={className}>
+      {children}
     </Link>
   );
 }

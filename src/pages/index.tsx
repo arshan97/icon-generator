@@ -1,10 +1,29 @@
 import { type NextPage } from "next";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Head from "next/head";
-import Image from "next/image";
-import { PrimaryLinkButton } from "~/component/PrimaryLinkButton";
+import { useRouter } from "next/router";
 
 function HeroBanner() {
+  const session = useSession();
+  const isLoggedIn = !!session.data;
+  const router = useRouter()
+
+  const handleSignIn = async () => {
+    try {
+      await signIn('google');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleGenerate = async () => {
+    try {
+      await router.push('/generate');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <section className="flex flex-col items-center justify-center bg-black text-white min-h-screen px-8">
       <div className="max-w-4xl text-center">
@@ -15,9 +34,21 @@ function HeroBanner() {
         <p className="text-xl mt-10 mb-10 text-zinc-400">
           Use AI to generate icons in seconds instead of paying a designer and waiting for them to create them for you.
         </p>
-        <button onClick={() => signIn('google').catch(console.error)} className="px-6 py-3 bg-gradient-to-r from-purple-400 via-pink-500 to-orange-500 rounded-lg text-xl font-semibold">
+        {!isLoggedIn ? (
+        <button
+        onClick={() => { void handleSignIn(); }}
+          className="px-6 py-3 bg-gradient-to-r from-purple-400 via-pink-500 to-orange-500 rounded-lg text-xl font-semibold"
+        >
           Get Started
         </button>
+      ) : (
+        <button
+        onClick={() => { void handleGenerate(); }}
+          className="px-6 py-3 bg-gradient-to-r from-purple-400 via-pink-500 to-orange-500 rounded-lg text-xl font-semibold"
+        >
+          Generate Icons
+        </button>
+      )}
       </div>
       <div className="mt-12">
         {/* <Image

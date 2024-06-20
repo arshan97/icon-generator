@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  /* @apply bg-black text-white; */
+@layer utilities {
+  .border-gradient {
+    border-image: linear-gradient(to right, #8b5cf6, #ec4899, #f59e0b);
+    border-image-slice: 1;
+  }
+
+  .hover\:border-gradient-hover:hover {
+    border-image: linear-gradient(to right, #8b5cf6, #ec4899, #f59e0b);
+    border-image-slice: 1;
+  }
 }

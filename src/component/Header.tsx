@@ -74,7 +74,7 @@ export function Header() {
                 onClick={() => {
                   signIn('google').catch(console.error);
                 }}
-                className="text-lg hover:text-gray-400"
+                className="text-white py-2 px-6 rounded-lg border-2 border-gradient hover:border-gradient-hover"
               >
                 Sign in
               </button>
