@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Spinner } from "./Spinner";
 
 export function Button(
-  props: React.ComponentPropsWithoutRef<"button"> & {
+    props: React.ComponentPropsWithoutRef<"button"> & {
     variant?: "primary" | "secondary";
     isLoading?: boolean;
   }
@@ -17,7 +17,7 @@ export function Button(
   return (
     <button
       {...rest}
-      className={clsx(
+      className={props.className ? props.className : clsx(
         "flex items-center justify-center gap-2 rounded px-4 py-2 disabled:bg-gray-600",
         color
       )}
