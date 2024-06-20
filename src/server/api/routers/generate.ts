@@ -15,7 +15,7 @@ const s3 = new AWS.S3({
   region: "us-east-1",
 });
 
-const BUCKET_NAME = "icon-generator-course";
+const BUCKET_NAME = "arshan-icon-generator";
 
 const configuration = new Configuration({
   apiKey: env.DALLE_API_KEY,
