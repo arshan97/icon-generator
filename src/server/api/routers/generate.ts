@@ -2,7 +2,7 @@ import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
-import { Configuration, OpenAIApi } from "openai";
+import OpenAIApi from "openai";
 import { env } from "~/env.mjs";
 import { b64Image } from "~/data/b64Image";
 import AWS from "aws-sdk";
@@ -17,22 +17,23 @@ const s3 = new AWS.S3({
 
 const BUCKET_NAME = "arshan-icon-generator";
 
-const configuration = new Configuration({
-  apiKey: env.DALLE_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+// const configuration = new Configuration({
+//   apiKey: env.DALLE_API_KEY,
+// });
+const openai = new OpenAIApi({ apiKey: env.DALLE_API_KEY });
 
 async function generateIcon(prompt: string, numberOfIcons = 1) {
   if (env.MOCK_DALLE === "true") {
     return new Array<string>(numberOfIcons).fill(b64Image);
   } else {
-    const response = await openai.createImage({
+    const response = await openai.images.generate({
       prompt,
       n: numberOfIcons,
       size: "512x512",
       response_format: "b64_json",
     });
-    return response.data.data.map((result) => result.b64_json || "");
+    console.log(response.data, "DATA");
+    return response.data.map((result) => result.b64_json || "");
   }
 }
 

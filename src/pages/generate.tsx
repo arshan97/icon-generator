@@ -180,7 +180,7 @@ const GeneratePage: NextPage = () => {
         <Button
           isLoading={generateIcon.isLoading}
           disabled={generateIcon.isLoading}
-          className="bg-gradient-to-r from-purple-400 via-pink-500 to-orange-500 text-white py-3 px-6 rounded-lg hover:from-purple-500 hover:via-pink-600 hover:to-orange-600"
+          className="flex items-center justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-orange-500 text-white py-3 px-6 rounded-lg hover:from-purple-500 hover:via-pink-600 hover:to-orange-600"
         >
           Submit
         </Button>

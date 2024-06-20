@@ -22,8 +22,7 @@ export function Button(
         color
       )}
     >
-      {isLoading && <Spinner />}
-      {props.children}
+      {isLoading ? <Spinner /> : props.children}
     </button>
   );
 }
