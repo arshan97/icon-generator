@@ -1,3 +1,4 @@
+export const maxDuration = 60;
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
